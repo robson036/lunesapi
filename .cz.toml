@@ -5,7 +5,7 @@ name = "cz_customize"
 [tool.commitizen.customize]
 # message_template = "{{change_type}}:{% if show_message %} {{message}}{% endif %}"
 message_template = """{{change_type}}: {{message}}
-{% if commit_body != "" %} {{\n commit_body \n}}{% endif %}
+{% if commit_body != "" %} {{\n\n commit_body \n}}{% endif %}
 {% if affected_issue != "" %} {{\n affected_issue \n}}{% endif %}
 {% if reviewer != "" %} {{\n reviewer}}{% endif %}
 """
