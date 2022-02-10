@@ -32,31 +32,15 @@ type = "input"
 name = "message"
 message = "Enter a clear and descriptive commit message:"
 
-# [[tool.commitizen.customize.questions]]
-# type = "confirm"
-# name = "has_commit_body"
-# message = "Do you want to add a commit body?"
-
 [[tool.commitizen.customize.questions]]
 type = "input"
 name = "commit_body"
 message = "Enter a detailed commit body (optional):"
 
-
-# [[tool.commitizen.customize.questions]]
-# type = "confirm"
-# name = "affect_issues"
-# message = "Does this branch affect some opened issue?"
-
 [[tool.commitizen.customize.questions]]
 type = "input"
 name = "affected_issue"
 message = "Enter the issue and how it's affected (ex: close #123) (optional):"
-
-# [[tool.commitizen.customize.questions]]
-# type = "confirm"
-# name = "has_reviewer"
-# message = "Would you like to nominate someone to review?"
 
 [[tool.commitizen.customize.questions]]
 type = "input"
