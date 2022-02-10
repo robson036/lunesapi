@@ -1,0 +1,33 @@
+[tool.commitizen]
+name = "cz_customize"
+
+
+[tool.commitizen.customize]
+message_template = "{{change_type}}:{% if show_message %} {{message}}{% endif %}"
+example = "feature: this feature enable customize through config file"
+schema = "<type>: <body>"
+schema_pattern = "(feature|bug fix):(\\s.*)"
+bump_pattern = "^(break|new|fix|hotfix)"
+bump_map = {"break" = "MAJOR", "new" = "MINOR", "fix" = "PATCH", "hotfix" = "PATCH"}
+change_type_order = ["BREAKING CHANGE", "feat", "fix", "refactor", "perf"]
+info_path = "cz_customize_info.txt"
+info = """
+This is customized info
+"""
+
+[[tool.commitizen.customize.questions]]
+type = "list"
+name = "change_type"
+choices = [{ value = "added", name = "added: Add a new feature" }, { value = "fixed", name = "fixed: Fix a bug" },{ value = "merged", name = "merged: Resolves an issue and merge it to prod" }, { value = "refactored", name = "refactored: Does not add a feature or fix a bug" }, { value = "deprecated", name = "deprecated: Breaks compatibility with an earlier version" }]
+# choices = ["feature", "fix"]  # short version
+message = "Select the type of change you are committing"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "message"
+message = "Enter a clear and descriptive commit message:"
+
+[[tool.commitizen.customize.questions]]
+type = "confirm"
+name = "show_message"
+message = "Do you want to add body message in commit?"
