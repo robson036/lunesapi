@@ -3,12 +3,17 @@ name = "cz_customize"
 
 
 [tool.commitizen.customize]
-message_template = "{{change_type}}:{% if show_message %} {{message}}{% endif %}"
+# message_template = "{{change_type}}:{% if show_message %} {{message}}{% endif %}"
+message_template = """{{change_type}}: {{message}}
+{% if commit_body != "" %} {{\n commit_body \n}}{% endif %}
+{% if affected_issue != "" %} {{\n affected_issue \n}}{% endif %}
+{% if reviewer != "" %} {{\n reviewer}}{% endif %}
+"""
 example = "feature: this feature enable customize through config file"
 schema = "<type>: <body>"
 schema_pattern = "(feature|bug fix):(\\s.*)"
 bump_pattern = "^(break|new|fix|hotfix)"
-bump_map = {"break" = "MAJOR", "new" = "MINOR", "fix" = "PATCH", "hotfix" = "PATCH"}
+bump_map = {break = "MAJOR", new = "MINOR", fix = "PATCH", hotfix = "PATCH"}
 change_type_order = ["BREAKING CHANGE", "feat", "fix", "refactor", "perf"]
 info_path = "cz_customize_info.txt"
 info = """
@@ -27,7 +32,33 @@ type = "input"
 name = "message"
 message = "Enter a clear and descriptive commit message:"
 
+# [[tool.commitizen.customize.questions]]
+# type = "confirm"
+# name = "has_commit_body"
+# message = "Do you want to add a commit body?"
+
 [[tool.commitizen.customize.questions]]
-type = "confirm"
-name = "show_message"
-message = "Do you want to add body message in commit?"
+type = "input"
+name = "commit_body"
+message = "Enter a detailed commit body (optional):"
+
+
+# [[tool.commitizen.customize.questions]]
+# type = "confirm"
+# name = "affect_issues"
+# message = "Does this branch affect some opened issue?"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "affected_issue"
+message = "Enter the issue and how it's affected (ex: close #123) (optional):"
+
+# [[tool.commitizen.customize.questions]]
+# type = "confirm"
+# name = "has_reviewer"
+# message = "Would you like to nominate someone to review?"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "reviewer"
+message = "Enter the reviewer username (optional):"
